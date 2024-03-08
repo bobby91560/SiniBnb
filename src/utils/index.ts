@@ -1,6 +1,6 @@
 export const calculateDistance = (
   referentialPosition: google.maps.LatLngLiteral,
-  positionToCompare: google.maps.LatLngLiteral
+  positionToCompare: google.maps.LatLngLiteral,
 ): number => {
   const earthRadius = 6371; // Rayon de la Terre en kilomètres
   const latitudeDistance =
