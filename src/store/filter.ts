@@ -1,10 +1,10 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
-import { Place } from '@/types';
+import { Place } from "@/types";
 
 export type FilterKeys = keyof Pick<
   Place,
-  'extension_flexibility' | 'review_score' | 'host_response_rate' | 'distance'
+  "extension_flexibility" | "review_score" | "host_response_rate" | "distance"
 >;
 
 export type FilterValues = {

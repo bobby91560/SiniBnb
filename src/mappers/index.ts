@@ -1,7 +1,7 @@
-import { Place } from '@/types';
+import { Place } from "@/types";
 
-import db from '../data/database.json';
-import { calculateDistance } from '../utils';
+import db from "../data/database.json";
+import { calculateDistance } from "../utils";
 
 export const placeDTOtoPlace = async (
   center: google.maps.LatLngLiteral,

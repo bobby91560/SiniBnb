@@ -1,5 +1,5 @@
-import { FilterKeys } from '@/store/filter';
-import { Place } from '@/types';
+import { FilterKeys } from "@/store/filter";
+import { Place } from "@/types";
 
 export type SortCriterion = {
   key: FilterKeys;
@@ -14,21 +14,21 @@ export type FilterCriterion = {
 
 const defaultSortCriterion: SortCriterion[] = [
   {
-    key: 'distance',
+    key: "distance",
     weight: 3,
   },
   {
-    key: 'host_response_rate',
+    key: "host_response_rate",
     weight: 1,
     max: 100,
   },
   {
-    key: 'review_score',
+    key: "review_score",
     weight: 1,
     max: 5,
   },
   {
-    key: 'extension_flexibility',
+    key: "extension_flexibility",
     weight: 1,
     max: 100,
   },
@@ -58,10 +58,10 @@ const sortPlaces = (
     let scoreB = 0;
 
     sortCriterion?.forEach(({ key, weight, max }) => {
-      if (key === 'distance' && maxDistance) {
+      if (key === "distance" && maxDistance) {
         scoreA -= (a.distance / maxDistance) * weight;
         scoreB -= (b.distance / maxDistance) * weight;
-      } else if (key !== 'distance' && max) {
+      } else if (key !== "distance" && max) {
         scoreA += (a[key] / max) * weight;
         scoreB += (b[key] / max) * weight;
       }

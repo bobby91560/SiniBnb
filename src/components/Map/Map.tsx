@@ -1,13 +1,13 @@
-import { GoogleMap } from '@react-google-maps/api';
-import React, { useCallback, useState } from 'react';
+import { GoogleMap } from "@react-google-maps/api";
+import React, { useCallback, useState } from "react";
 
-import { Place } from '@/types';
+import { Place } from "@/types";
 
-import Marker from './Marker';
+import Marker from "./Marker";
 
 const containerStyle = {
-  width: '100%',
-  height: '100%',
+  width: "100%",
+  height: "100%",
 } as const;
 
 type MapProps = {

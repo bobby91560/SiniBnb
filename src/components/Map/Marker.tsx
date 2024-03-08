@@ -1,8 +1,8 @@
-import { InfoWindow, Marker as GoogleMarker } from '@react-google-maps/api';
+import { InfoWindow, Marker as GoogleMarker } from "@react-google-maps/api";
 
-import { Place } from '@/types';
+import { Place } from "@/types";
 
-import CardPlace from '../CardPlace';
+import CardPlace from "../CardPlace";
 
 type CustomMarkerProps = {
   value: Place;
@@ -15,7 +15,7 @@ export default function Marker({ value, onClick, isSelected }: CustomMarkerProps
     <GoogleMarker position={value.location} onClick={onClick}>
       {isSelected && (
         <InfoWindow position={value.location} onCloseClick={onClick}>
-          <CardPlace size={'small'} value={value} />
+          <CardPlace size={"small"} value={value} />
         </InfoWindow>
       )}
     </GoogleMarker>
