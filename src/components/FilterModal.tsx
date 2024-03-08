@@ -1,20 +1,20 @@
-import TuneIcon from "@mui/icons-material/Tune";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import Typography from "@mui/material/Typography";
-import React, { PropsWithChildren, useState } from "react";
+import TuneIcon from '@mui/icons-material/Tune';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
+import React, { PropsWithChildren, useState } from 'react';
 
-import { FilterKeys, FilterValues, useFilterStore } from "../store/filter";
-import Filter from "./Filter";
+import { FilterKeys, FilterValues, useFilterStore } from '../store/filter';
+import Filter from './Filter';
 
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: "background.default",
+  bgcolor: 'background.default',
   boxShadow: 24,
   borderRadius: 4,
   p: 6,
@@ -23,7 +23,7 @@ const style = {
 export type FilterInfo = {
   key: FilterKeys;
   displayName: string;
-  componentType: "rating" | "slider";
+  componentType: 'rating' | 'slider';
   min: number;
   max: number;
   weight: number;
@@ -35,36 +35,36 @@ type FilterModalProps = {
 
 const filterInfos: FilterInfo[] = [
   {
-    key: "review_score",
-    displayName: "Score",
+    key: 'review_score',
+    displayName: 'Score',
     weight: 1,
-    componentType: "rating",
+    componentType: 'rating',
     min: 1,
     max: 5,
   },
   {
-    key: "distance",
-    displayName: "Distance",
+    key: 'distance',
+    displayName: 'Distance',
     min: 1,
     max: 1000,
     weight: 1,
-    componentType: "slider",
+    componentType: 'slider',
   },
   {
-    key: "extension_flexibility",
-    displayName: "Flexibilité",
+    key: 'extension_flexibility',
+    displayName: 'Flexibilité',
     min: 1,
     max: 100,
     weight: 1,
-    componentType: "slider",
+    componentType: 'slider',
   },
   {
-    key: "host_response_rate",
-    displayName: "Score de réponse",
+    key: 'host_response_rate',
+    displayName: 'Score de réponse',
     min: 1,
     max: 100,
     weight: 1,
-    componentType: "slider",
+    componentType: 'slider',
   },
 ];
 
@@ -95,39 +95,26 @@ export default function FilterModal({ onSave }: FilterModalProps) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box
-          sx={style}
-          display={"flex"}
-          flexDirection={"column"}
-          gap={4}
-          width={"100%"}
-        >
+        <Box sx={style} display={'flex'} flexDirection={'column'} gap={4} width={'100%'}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Filtres
           </Typography>
           <Typography id="modal-modal-description">
-            <Box
-              display={"flex"}
-              width={"100%"}
-              flexDirection={"column"}
-              gap={4}
-            >
+            <Box display={'flex'} width={'100%'} flexDirection={'column'} gap={4}>
               {filterInfos.map((value) => (
                 <Filter
                   key={value.key}
                   onChange={handleOnChange}
                   filterInfo={value}
-                  filterValues={filterSelected.find(
-                    (filter) => filter.key === value.key
-                  )}
+                  filterValues={filterSelected.find((filter) => filter.key === value.key)}
                 />
               ))}
             </Box>
           </Typography>
-          <Box display={"flex"} justifyContent={"space-between"}>
+          <Box display={'flex'} justifyContent={'space-between'}>
             <Button
               sx={{
-                alignSelf: "flex-end",
+                alignSelf: 'flex-end',
               }}
               onClick={resetFilters}
               variant="outlined"
@@ -136,7 +123,7 @@ export default function FilterModal({ onSave }: FilterModalProps) {
             </Button>
             <Button
               sx={{
-                alignSelf: "flex-end",
+                alignSelf: 'flex-end',
               }}
               onClick={handleOnSave}
               variant="contained"

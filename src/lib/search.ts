@@ -1,5 +1,5 @@
-import { FilterKeys } from "@/store/filter";
-import { Place } from "@/types";
+import { FilterKeys } from '@/store/filter';
+import { Place } from '@/types';
 
 export type SortCriterion = {
   key: FilterKeys;
@@ -14,21 +14,21 @@ export type FilterCriterion = {
 
 const defaultSortCriterion: SortCriterion[] = [
   {
-    key: "distance",
+    key: 'distance',
     weight: 3,
   },
   {
-    key: "host_response_rate",
+    key: 'host_response_rate',
     weight: 1,
     max: 100,
   },
   {
-    key: "review_score",
+    key: 'review_score',
     weight: 1,
     max: 5,
   },
   {
-    key: "extension_flexibility",
+    key: 'extension_flexibility',
     weight: 1,
     max: 100,
   },
@@ -40,9 +40,7 @@ const filterPlaces = (places: Place[], filterCriterion?: FilterCriterion[]) => {
     return filterCriterion.every((criterion) => {
       const placeValue = place[criterion.key];
       if (Array.isArray(criterion.value)) {
-        return (
-          criterion.value[0] <= placeValue && criterion.value[1] >= placeValue
-        );
+        return criterion.value[0] <= placeValue && criterion.value[1] >= placeValue;
       } else {
         return placeValue >= criterion.value;
       }
@@ -53,17 +51,17 @@ const filterPlaces = (places: Place[], filterCriterion?: FilterCriterion[]) => {
 const sortPlaces = (
   places: Place[],
   sortCriterion: SortCriterion[],
-  maxDistance?: number
+  maxDistance?: number,
 ) => {
   return places.sort((a, b) => {
     let scoreA = 0;
     let scoreB = 0;
 
     sortCriterion?.forEach(({ key, weight, max }) => {
-      if (key === "distance" && maxDistance) {
+      if (key === 'distance' && maxDistance) {
         scoreA -= (a.distance / maxDistance) * weight;
         scoreB -= (b.distance / maxDistance) * weight;
-      } else if (key !== "distance" && max) {
+      } else if (key !== 'distance' && max) {
         scoreA += (a[key] / max) * weight;
         scoreB += (b[key] / max) * weight;
       }
@@ -76,17 +74,11 @@ const sortPlaces = (
 export const filterAndSortPlaces = (
   places: Place[],
   sortCriterion: SortCriterion[] = defaultSortCriterion,
-  filterCriterion?: FilterCriterion[]
+  filterCriterion?: FilterCriterion[],
 ): Promise<Place[]> => {
   const filteredPlaces = filterPlaces(places, filterCriterion);
-  const calculateMaxDistance = Math.max(
-    ...filteredPlaces.map((place) => place.distance)
-  );
-  const sortedPlaces = sortPlaces(
-    filteredPlaces,
-    sortCriterion,
-    calculateMaxDistance
-  );
+  const calculateMaxDistance = Math.max(...filteredPlaces.map((place) => place.distance));
+  const sortedPlaces = sortPlaces(filteredPlaces, sortCriterion, calculateMaxDistance);
 
   return new Promise((resolve) => {
     setTimeout(() => {

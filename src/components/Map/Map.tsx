@@ -1,13 +1,13 @@
-import { GoogleMap } from "@react-google-maps/api";
-import React, { useCallback, useState } from "react";
+import { GoogleMap } from '@react-google-maps/api';
+import React, { useCallback, useState } from 'react';
 
-import { Place } from "@/types";
+import { Place } from '@/types';
 
-import Marker from "./Marker";
+import Marker from './Marker';
 
 const containerStyle = {
-  width: "100%",
-  height: "100%",
+  width: '100%',
+  height: '100%',
 } as const;
 
 type MapProps = {
@@ -19,14 +19,7 @@ type MapProps = {
   isSearch: boolean;
 };
 
-const Map = ({
-  isLoaded,
-  center,
-  data,
-  onChange,
-  zoom,
-  isSearch,
-}: MapProps) => {
+const Map = ({ isLoaded, center, data, onChange, zoom, isSearch }: MapProps) => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<Place | null>(null);
 
@@ -78,13 +71,11 @@ const Map = ({
         isLoaded ? (
           <Marker
             key={place.id}
-            onClick={() =>
-              setSelectedMarker(selectedMarker === null ? place : null)
-            }
+            onClick={() => setSelectedMarker(selectedMarker === null ? place : null)}
             isSelected={selectedMarker?.id === place.id}
             value={place}
           />
-        ) : null
+        ) : null,
       )}
     </GoogleMap>
   ) : null;

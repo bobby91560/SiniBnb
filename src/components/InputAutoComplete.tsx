@@ -1,20 +1,18 @@
-import SearchIcon from "@mui/icons-material/Search";
-import { InputAdornment, TextField, useTheme } from "@mui/material";
-import { Autocomplete } from "@react-google-maps/api";
-import { useState } from "react";
+import SearchIcon from '@mui/icons-material/Search';
+import { InputAdornment, TextField, useTheme } from '@mui/material';
+import { Autocomplete } from '@react-google-maps/api';
+import { useState } from 'react';
 
 type InputAutoCompleteProps = {
   onChange: (coordonate?: google.maps.LatLngLiteral) => void;
 };
 
 const autocompleteOptions = {
-  componentRestrictions: { country: "ca" },
-  types: ["address"],
+  componentRestrictions: { country: 'ca' },
+  types: ['address'],
 };
 
-export default function InputAutoComplete({
-  onChange,
-}: InputAutoCompleteProps) {
+export default function InputAutoComplete({ onChange }: InputAutoCompleteProps) {
   const theme = useTheme();
   const [autocomplete, setAutocomplete] =
     useState<google.maps.places.Autocomplete | null>(null);
@@ -46,7 +44,7 @@ export default function InputAutoComplete({
         <TextField
           fullWidth
           type="search"
-          size={"small"}
+          size={'small'}
           placeholder="Chercher un lieu atypique"
           InputProps={{
             startAdornment: (
@@ -55,7 +53,7 @@ export default function InputAutoComplete({
               </InputAdornment>
             ),
             sx: {
-              border: "none",
+              border: 'none',
               borderRadius: 5,
               background: theme.palette.background.default,
             },

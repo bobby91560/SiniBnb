@@ -1,10 +1,10 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
-import { Place } from "@/types";
+import { Place } from '@/types';
 
 export type FilterKeys = keyof Pick<
   Place,
-  "extension_flexibility" | "review_score" | "host_response_rate" | "distance"
+  'extension_flexibility' | 'review_score' | 'host_response_rate' | 'distance'
 >;
 
 export type FilterValues = {
@@ -25,7 +25,7 @@ export const useFilterStore = create<FilterStoreState>((set) => ({
   setFilterSelected: (filterValues) =>
     set((state) => {
       const newFilter = state.filterSelected.filter(
-        (filter) => filter.key !== filterValues.key
+        (filter) => filter.key !== filterValues.key,
       );
       newFilter.push(filterValues);
       return { filterSelected: newFilter };

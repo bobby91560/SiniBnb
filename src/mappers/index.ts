@@ -1,10 +1,10 @@
-import { Place } from "@/types";
+import { Place } from '@/types';
 
-import db from "../data/database.json";
-import { calculateDistance } from "../utils";
+import db from '../data/database.json';
+import { calculateDistance } from '../utils';
 
 export const placeDTOtoPlace = async (
-  center: google.maps.LatLngLiteral
+  center: google.maps.LatLngLiteral,
 ): Promise<Place[]> => {
   const geocoder = new window.google.maps.Geocoder();
   const places: Place[] = await Promise.all(
@@ -22,7 +22,7 @@ export const placeDTOtoPlace = async (
         distance: calculateDistance(center, location.toJSON()),
         address: trueAddress.results[0].formatted_address,
       } as Place;
-    })
+    }),
   );
   return places;
 };
